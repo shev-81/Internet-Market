@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Products</title>
+</head>
+<body>
+<h1>Products</h1>
+<div th:each="prod : ${products}">
+    <span th:text="${'Name - ' + prod.name + ' ID ' + prod.id}"/>
+    <a th:href="@{'/product/' + ${prod.id}}">info:</a>
+</div><BR>
+<span th:text="${'Total count products in repositary ' + products.size()}"/><BR>
+
+</body>
+</html>
