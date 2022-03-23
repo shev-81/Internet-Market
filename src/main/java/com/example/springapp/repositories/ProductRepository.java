@@ -17,7 +17,7 @@ public class ProductRepository {
     public void init(){
         products = new ArrayList<>(List.of(
                 new Product(1L, "Apple"),
-                new Product(2L, "Arbuz"),
+                new Product(2L, "CocaCola"),
                 new Product(3L, "Tomato"),
                 new Product(4L, "Banana"),
                 new Product(5L, "Orange")
