@@ -16,11 +16,11 @@ public class ProductRepository {
     @PostConstruct
     public void init(){
         products = new ArrayList<>(List.of(
-                new Product(1L, "Apple"),
-                new Product(2L, "Arbuz"),
-                new Product(3L, "Tomato"),
-                new Product(4L, "Banana"),
-                new Product(5L, "Orange")
+                new Product(1L, "Apple",10),
+                new Product(2L, "Arbuz",20),
+                new Product(3L, "Tomato",30),
+                new Product(4L, "Banana",40),
+                new Product(5L, "Orange",50)
         ));
     }
 
@@ -33,5 +33,9 @@ public class ProductRepository {
 
     public List<Product> getProducts() {
         return Collections.unmodifiableList(products);
+    }
+
+    public void delProduct(Long id){
+        products.removeIf(p -> p.getId().equals(id));
     }
 }
