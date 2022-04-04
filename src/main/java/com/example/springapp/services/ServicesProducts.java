@@ -28,4 +28,8 @@ public class ServicesProducts {
         productRepository.delProduct(id);
     }
 
+    public void save(Product product){
+        productRepository.save(product);
+    }
+
 }
