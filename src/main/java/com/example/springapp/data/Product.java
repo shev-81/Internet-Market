@@ -14,7 +14,7 @@ public class Product {
     private String name;
 
     @Column(name = "price")
-    private int price;
+    private Integer price;
 
     public Product() {
     }
@@ -39,11 +39,11 @@ public class Product {
         this.name = name;
     }
 
-    public int getPrice() {
+    public Integer getPrice() {
         return price;
     }
 
-    public void setPrice(int price) {
+    public void setPrice(Integer price) {
         this.price = price;
     }
 }

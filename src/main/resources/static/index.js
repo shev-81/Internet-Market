@@ -8,6 +8,33 @@ angular.module('app', []).controller('indexController', function ($scope, $http)
             });
     };
 
+    $scope.lowPriceProducts = function (price) {
+        $http.get(contextPath + '/products/low/' + price
+            ).then(function (response) {
+                $scope.ProductList = response.data;
+            });
+    }
+
+    $scope.highPriceProducts = function (price) {
+        $http.get(contextPath + '/products/hi/' + price
+            ).then(function (response) {
+                $scope.ProductList = response.data;
+            });
+    }
+
+    $scope.betweenPriceProducts = function (priceOne, priceTwo) {
+        $http({
+            url: contextPath + '/products/between',
+            method: 'GET',
+            params: {
+                priceOne: priceOne,
+                priceTwo: priceTwo
+            }
+        }).then(function (response) {
+            $scope.ProductList = response.data;
+        });
+    }
+
     $scope.deleteProduct = function (productId) {
         $http.get(contextPath + '/products/delete/' + productId)
             .then(function (response) {

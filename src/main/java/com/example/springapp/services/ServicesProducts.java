@@ -28,6 +28,16 @@ public class ServicesProducts {
     }
 
     @Transactional
+    public List<Product> findAllByLowPrice(Integer price){
+        return productRepository.lowPrice(price);
+    }
+
+    @Transactional
+    public List<Product> findAllByHiPrice(Integer price){
+        return productRepository.hiPrice(price);
+    }
+
+    @Transactional
     public void delProdictById(Long id) {
         productRepository.deleteById(id);
     }
@@ -36,5 +46,11 @@ public class ServicesProducts {
     public void save(Product product){
         productRepository.save(product);
     }
+
+    @Transactional
+    public List<Product> findAllBetweenPrice(Integer priceOne, Integer priceTwo){
+        return productRepository.findAllBetweenPrice(priceOne, priceTwo);
+    }
+
 
 }

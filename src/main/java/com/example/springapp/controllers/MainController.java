@@ -32,4 +32,19 @@ public class MainController {
         product.changePrice(delta);
         servicesProducts.save(product);
     }
+
+    @GetMapping("/products/low/{price}")
+    public List<Product> getLowPriceProducts(@PathVariable Integer price){
+        return servicesProducts.findAllByLowPrice(price);
+    }
+
+    @GetMapping("/products/hi/{price}")
+    public List<Product> getHiPriceProducts(@PathVariable Integer price){
+        return servicesProducts.findAllByHiPrice(price);
+    }
+
+    @GetMapping("/products/between")
+    public List<Product> getPriceProductsBetween(@RequestParam Integer priceOne, @RequestParam Integer priceTwo){
+        return servicesProducts.findAllBetweenPrice(priceOne, priceTwo);
+    }
 }
