@@ -45,6 +45,7 @@ public class MainController {
 
     @GetMapping("/products/between")
     public List<Product> getPriceProductsBetween(@RequestParam Integer priceOne, @RequestParam Integer priceTwo){
+        System.out.println(priceOne+ "" + priceTwo);
         return servicesProducts.findAllBetweenPrice(priceOne, priceTwo);
     }
 }
