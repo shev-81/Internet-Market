@@ -15,6 +15,21 @@
 <body>
 
 <div class="container" ng-controller="indexController">
+    <button class="btn btn-danger" ng-click="lowPriceProducts(400)">Price < 400</button>
+    <button class="btn btn-danger" ng-click="highPriceProducts(400)">Price > 400</button>
+    <button class="btn btn-danger" ng-click="betweenPriceProducts(200, 300)">Price between 200 and 300</button>
+    <FORM novalidate ng-submit="createProduct()">
+        <SPAN>Введите новый продукт:</SPAN>
+        <input class="form-control" type="text" placeholder="имя продукта" ng-model="newProduct.name">
+        <input class="form-control" type="number" placeholder="0" ng-model="newProduct.price">
+        <BUTTON class="btn btn-primary" type="submit">Сохранить</BUTTON>
+    </FORM>
+    <FORM novalidate ng-submit="filterProduct()">
+        <SPAN>Введите диапазон цен:</SPAN>
+        <input class="form-control" type="number" placeholder="0" ng-model="newBetween.priceOne">
+        <input class="form-control" type="number" placeholder="10000" ng-model="newBetween.priceTwo">
+        <BUTTON class="btn btn-primary" type="submit">Выбрать</BUTTON>
+    </FORM>
     <h3>Список продуктов</h3>
     <table class="table table-hover" cellpadding="0" cellspacing="0">
         <tr>
@@ -40,16 +55,6 @@
         </tr>
         </tbody>
     </table>
-<!--    <FORM method="get" action="http://localhost:8189/app/products/between">-->
-<!--        <SPAN>Введите диапазон цен:</SPAN>-->
-<!--        <input id="priceOne" type="number">-->
-<!--        <SPAN> - </SPAN>-->
-<!--        <input id="priceTwo" type="number">-->
-<!--        <BUTTON class="btn btn-danger" type="submit">accept</BUTTON>-->
-<!--    </FORM>-->
-    <button class="btn btn-danger" ng-click="lowPriceProducts(400)">Price < 400</button>
-    <button class="btn btn-danger" ng-click="highPriceProducts(400)">Price > 400</button>
-    <button class="btn btn-danger" ng-click="betweenPriceProducts(200, 300)">Price between 200 and 300</button>
 </div>
 </body>
 </html>

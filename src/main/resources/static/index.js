@@ -1,4 +1,5 @@
 angular.module('app', []).controller('indexController', function ($scope, $http) {
+
     const contextPath = 'http://localhost:8189/app';
 
     $scope.loadProducts = function () {
@@ -7,6 +8,27 @@ angular.module('app', []).controller('indexController', function ($scope, $http)
                 $scope.ProductList = response.data;
             });
     };
+
+    $scope.createProduct = function(){
+//    console.log($scope.newProduct);
+        $http.post(contextPath + '/products', $scope.newProduct
+                ).then(function (response) {
+                     $scope.loadProducts();
+                });
+    }
+
+    $scope.filterProduct = function(){
+        $http({
+            url: contextPath + '/products/betweenprice',
+            method: 'GET',
+            params: {
+                priceOne: $scope.newBetween.priceOne,
+                priceTwo: $scope.newBetween.priceTwo
+            }
+            }).then(function (response) {
+                $scope.ProductList = response.data;
+            });
+    }
 
     $scope.lowPriceProducts = function (price) {
         $http.get(contextPath + '/products/low/' + price

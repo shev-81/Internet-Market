@@ -21,30 +21,25 @@ public class ServicesProducts {
         return productRepository.findAll();
     }
 
-    @Transactional
     public Product getProductById(Long id){
         Product prod = productRepository.findById(id).get();
         return prod;
     }
 
-    @Transactional
     public List<Product> findAllByLowPrice(Integer price){
         return productRepository.lowPrice(price);
     }
 
-    @Transactional
     public List<Product> findAllByHiPrice(Integer price){
         return productRepository.hiPrice(price);
     }
 
-    @Transactional
     public void delProdictById(Long id) {
         productRepository.deleteById(id);
     }
 
-    @Transactional
-    public void save(Product product){
-        productRepository.save(product);
+    public Product save(Product product){
+        return productRepository.save(product);
     }
 
     @Transactional
