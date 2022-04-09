@@ -2,6 +2,10 @@ package com.example.springapp.services;
 
 import com.example.springapp.data.Product;
 import com.example.springapp.repositories.ProductRepository;
+import com.example.springapp.repositories.specifications.ProductSpecifications;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -16,9 +20,18 @@ public class ServicesProducts {
         this.productRepository = productRepository;
     }
 
-    @Transactional
-    public List<Product> getProducts() {
-        return productRepository.findAll();
+    public Page<Product> find(Integer minScore, Integer maxScore, String partName, Integer page) {
+        Specification<Product> spec = Specification.where(null);
+        if (minScore != null) {
+            spec = spec.and(ProductSpecifications.scoreGreaterOrEqualsThan(minScore));
+        }
+        if (maxScore != null) {
+            spec = spec.and(ProductSpecifications.scoreLessThanOrEqualsThan(maxScore));
+        }
+        if (partName != null) {
+            spec = spec.and(ProductSpecifications.nameLike(partName));
+        }
+        return productRepository.findAll(spec, PageRequest.of(page - 1, 10));
     }
 
     public Product getProductById(Long id){
@@ -46,6 +59,4 @@ public class ServicesProducts {
     public List<Product> findAllBetweenPrice(Integer priceOne, Integer priceTwo){
         return productRepository.findAllBetweenPrice(priceOne, priceTwo);
     }
-
-
 }

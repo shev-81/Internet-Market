@@ -1,12 +1,13 @@
 package com.example.springapp.controllers;
 
 import com.example.springapp.data.Product;
+import com.example.springapp.dto.ProductDto;
 import com.example.springapp.services.ServicesProducts;
+import org.springframework.data.domain.Page;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
-
 @RestController
+@RequestMapping("/api/v1/products")
 public class ProductController {
 
    private ServicesProducts servicesProducts;
@@ -15,42 +16,41 @@ public class ProductController {
         this.servicesProducts = servicesProducts;
     }
 
-    @GetMapping("/products")
-    public List<Product> showProduct(){
-        return servicesProducts.getProducts();
+    @GetMapping
+    public Page<ProductDto> getAllProducts(
+            @RequestParam(name = "p", defaultValue = "1") Integer page,
+            @RequestParam(name = "min_price", required = false) Integer minPrice,
+            @RequestParam(name = "max_price", required = false) Integer maxPrice,
+            @RequestParam(name = "name_part", required = false) String namePart
+    ) {
+        if (page < 1) {
+            page = 1;
+        }
+        return servicesProducts.find(minPrice, maxPrice, namePart, page)
+                .map(s -> new ProductDto(s)
+        );
     }
 
-    @PostMapping("/products")
+    @PostMapping
     public Product saveProduct(@RequestBody Product product){
+        product.setId(null);
         return servicesProducts.save(product);
     }
 
-    @GetMapping("/products/delete/{id}")
+    @DeleteMapping("/{id}")
     public void delProducts(@PathVariable Long id){
         servicesProducts.delProdictById(id);
     }
-    // /products/change_price
 
-    @GetMapping("/products/change_price")
+    @PutMapping
+    public Product updateStudent(@RequestBody Product product) {
+        return servicesProducts.save(product);
+    }
+
+    @GetMapping("/change_price")
     public void changePrice(@RequestParam Long productId, @RequestParam Integer delta){
         Product product = servicesProducts.getProductById(productId);
         product.changePrice(delta);
         servicesProducts.save(product);
-    }
-
-    @GetMapping("/products/low/{price}")
-    public List<Product> getLowPriceProducts(@PathVariable Integer price){
-        return servicesProducts.findAllByLowPrice(price);
-    }
-
-    @GetMapping("/products/hi/{price}")
-    public List<Product> getHiPriceProducts(@PathVariable Integer price){
-        return servicesProducts.findAllByHiPrice(price);
-    }
-
-    @GetMapping("/products/between")
-    public List<Product> getPriceProductsBetween(@RequestParam Integer priceOne, @RequestParam Integer priceTwo){
-        System.out.println(priceOne+ "" + priceTwo);
-        return servicesProducts.findAllBetweenPrice(priceOne, priceTwo);
     }
 }
