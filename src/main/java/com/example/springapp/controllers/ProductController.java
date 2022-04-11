@@ -1,20 +1,20 @@
 package com.example.springapp.controllers;
 
+import com.example.springapp.converters.ProductConverter;
 import com.example.springapp.data.Product;
 import com.example.springapp.dto.ProductDto;
 import com.example.springapp.services.ServicesProducts;
+import lombok.AllArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.web.bind.annotation.*;
 
+@AllArgsConstructor
 @RestController
 @RequestMapping("/api/v1/products")
 public class ProductController {
 
    private ServicesProducts servicesProducts;
-
-    public ProductController(ServicesProducts servicesProducts) {
-        this.servicesProducts = servicesProducts;
-    }
+   private ProductConverter productConverter;
 
     @GetMapping
     public Page<ProductDto> getAllProducts(
@@ -27,14 +27,15 @@ public class ProductController {
             page = 1;
         }
         return servicesProducts.find(minPrice, maxPrice, namePart, page)
-                .map(s -> new ProductDto(s)
+                .map(s -> new ProductDto(s.getId(),s.getName(), s.getPrice())
         );
     }
 
     @PostMapping
-    public Product saveProduct(@RequestBody Product product){
-        product.setId(null);
-        return servicesProducts.save(product);
+    public ProductDto saveProduct(@RequestBody ProductDto productDto){
+        productDto.setId(null);
+        Product p = productConverter.dtoToEntity(productDto);
+        return productConverter.entityToDto(servicesProducts.save(p));
     }
 
     @DeleteMapping("/{id}")
@@ -43,8 +44,9 @@ public class ProductController {
     }
 
     @PutMapping
-    public Product updateStudent(@RequestBody Product product) {
-        return servicesProducts.save(product);
+    public ProductDto updateProducts(@RequestBody ProductDto productDto) {
+        Product product = productConverter.dtoToEntity(productDto);
+        return  productConverter.entityToDto(servicesProducts.save(product));
     }
 
     @GetMapping("/change_price")

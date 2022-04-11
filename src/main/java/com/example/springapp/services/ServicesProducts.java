@@ -7,9 +7,6 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
-
-import java.util.List;
 
 @Service
 public class ServicesProducts {
@@ -39,24 +36,11 @@ public class ServicesProducts {
         return prod;
     }
 
-    public List<Product> findAllByLowPrice(Integer price){
-        return productRepository.lowPrice(price);
-    }
-
-    public List<Product> findAllByHiPrice(Integer price){
-        return productRepository.hiPrice(price);
-    }
-
     public void delProdictById(Long id) {
         productRepository.deleteById(id);
     }
 
     public Product save(Product product){
         return productRepository.save(product);
-    }
-
-    @Transactional
-    public List<Product> findAllBetweenPrice(Integer priceOne, Integer priceTwo){
-        return productRepository.findAllBetweenPrice(priceOne, priceTwo);
     }
 }
