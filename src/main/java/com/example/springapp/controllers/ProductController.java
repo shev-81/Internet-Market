@@ -3,10 +3,15 @@ package com.example.springapp.controllers;
 import com.example.springapp.converters.ProductConverter;
 import com.example.springapp.data.Product;
 import com.example.springapp.dto.ProductDto;
+import com.example.springapp.exceptions.ResourceNotFoundException;
+import com.example.springapp.repositories.cart.ProductCart;
 import com.example.springapp.services.ServicesProducts;
+import com.example.springapp.validators.ProductValidator;
 import lombok.AllArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @AllArgsConstructor
 @RestController
@@ -15,6 +20,8 @@ public class ProductController {
 
    private ServicesProducts servicesProducts;
    private ProductConverter productConverter;
+   private ProductValidator productValidator;
+   private ProductCart productCart;
 
     @GetMapping
     public Page<ProductDto> getAllProducts(
@@ -31,11 +38,21 @@ public class ProductController {
         );
     }
 
+
+    @GetMapping("/cart/{id}")
+    public List<ProductDto> productCart (@PathVariable Long id) {
+        Product product = servicesProducts.findById(id).orElseThrow(() -> new ResourceNotFoundException("Product not found, id: " + id));
+        productCart.add(productConverter.entityToDto(product));
+        return productCart.getProductDtoList();
+    }
+
     @PostMapping
     public ProductDto saveProduct(@RequestBody ProductDto productDto){
+        productValidator.validate(productDto);
         productDto.setId(null);
-        Product p = productConverter.dtoToEntity(productDto);
-        return productConverter.entityToDto(servicesProducts.save(p));
+        Product product = productConverter.dtoToEntity(productDto);
+        product = servicesProducts.save(product);
+        return productConverter.entityToDto(product);
     }
 
     @DeleteMapping("/{id}")
@@ -45,13 +62,15 @@ public class ProductController {
 
     @PutMapping
     public ProductDto updateProducts(@RequestBody ProductDto productDto) {
+        productValidator.validate(productDto);
         Product product = productConverter.dtoToEntity(productDto);
-        return  productConverter.entityToDto(servicesProducts.save(product));
+        product = servicesProducts.save(product);
+        return  productConverter.entityToDto(product);
     }
 
     @GetMapping("/change_price")
     public void changePrice(@RequestParam Long productId, @RequestParam Integer delta){
-        Product product = servicesProducts.getProductById(productId);
+        Product product = servicesProducts.findById(productId).orElseThrow(() -> new ResourceNotFoundException("Product not found, id: " + productId));
         product.changePrice(delta);
         servicesProducts.save(product);
     }

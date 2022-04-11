@@ -32,6 +32,15 @@ angular.module('app', []).controller('indexController', function ($scope, $http)
             });
     }
 
+    $scope.addProductInCart = function (productId){
+        // console.log(productId);
+        $http.get(contextPath + '/products/cart/' + productId)
+            .then(function (response) {
+                console.log((response.data));
+                $scope.ProductCartList = response.data;
+            });
+    }
+
     $scope.changePrice = function (productId, delta) {
         $http({
             url: contextPath + '/products/change_price',

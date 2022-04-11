@@ -8,6 +8,8 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 
+import java.util.Optional;
+
 @Service
 public class ServicesProducts {
 
@@ -31,9 +33,8 @@ public class ServicesProducts {
         return productRepository.findAll(spec, PageRequest.of(page - 1, 10));
     }
 
-    public Product getProductById(Long id){
-        Product prod = productRepository.findById(id).get();
-        return prod;
+    public Optional<Product> findById(Long id) {
+        return productRepository.findById(id);
     }
 
     public void delProdictById(Long id) {
