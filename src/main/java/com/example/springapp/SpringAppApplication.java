@@ -1,7 +1,7 @@
 package com.example.springapp;
 
 /**
- * Домашнее Задание к 7 лекции Основы веб-разработки на Spring Framework
+ * Домашнее Задание к 11 лекции Основы веб-разработки на Spring Framework
  */
 
 import org.springframework.boot.SpringApplication;

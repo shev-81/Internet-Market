@@ -26,4 +26,40 @@ public class ProductCart {
     public void add (ProductDto productDto){
         productDtoList.add(productDto);
     }
+
+    public List<ProductDto> removeProductById(Long id){
+        for(int i =0; i<productDtoList.size(); i++){
+            ProductDto p = productDtoList.get(i);
+            if(p.getId().equals(id)){
+                productDtoList.remove(i);
+            }
+        }
+        return productDtoList;
+    }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

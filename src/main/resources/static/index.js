@@ -32,6 +32,15 @@ angular.module('app', []).controller('indexController', function ($scope, $http)
             });
     }
 
+    $scope.deleteProductInCart = function (productId) {
+        $http.delete(contextPath + '/products/cart/' + productId)
+            .then(function (response) {
+                $scope.ProductCartList = response.data;
+            });
+    }
+
+
+
     $scope.addProductInCart = function (productId){
         // console.log(productId);
         $http.get(contextPath + '/products/cart/' + productId)

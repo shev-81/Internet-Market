@@ -15,6 +15,7 @@
 <body>
 
 <div class="container" ng-controller="indexController">
+    <h5><a href="usersfront.html" style="color: brown">Администрирование</a></h5>
     <h3>Введите новый продукт:</h3>
     <form novalidate ng-submit="createProduct()">
         <input class="form-control" type="text" placeholder="имя продукта" ng-model="newProduct.name">
@@ -89,7 +90,7 @@
             <td>{{productCart.name}}</td>
             <td>{{productCart.price}}</td>
             <td>
-                <button class="btn btn-danger" ng-click="deleteProduct(productCart.id)">Удалить</button>
+                <button class="btn btn-danger" ng-click="deleteProductInCart(productCart.id)">Удалить</button>
             </td>
         </tr>
         </tbody>

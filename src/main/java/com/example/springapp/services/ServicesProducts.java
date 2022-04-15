@@ -1,6 +1,6 @@
 package com.example.springapp.services;
 
-import com.example.springapp.data.Product;
+import com.example.springapp.entities.Product;
 import com.example.springapp.repositories.ProductRepository;
 import com.example.springapp.repositories.specifications.ProductSpecifications;
 import org.springframework.data.domain.Page;

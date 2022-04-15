@@ -1,6 +1,6 @@
 package com.example.springapp.converters;
 
-import com.example.springapp.data.Product;
+import com.example.springapp.entities.Product;
 import com.example.springapp.dto.ProductDto;
 import org.springframework.stereotype.Component;
 
