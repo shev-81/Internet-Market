@@ -28,5 +28,5 @@ angular.module('app', []).controller('indexController', function ($scope, $http)
         });
     }
 
-    $scope.loadProducts();      //  запуск функции при загрузке страницы
+    $scope.loadProducts();     
 });
