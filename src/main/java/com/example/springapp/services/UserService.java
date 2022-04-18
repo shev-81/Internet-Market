@@ -2,7 +2,9 @@ package com.example.springapp.services;
 
 import com.example.springapp.entities.Role;
 import com.example.springapp.entities.User;
+import com.example.springapp.repositories.RoleRepository;
 import com.example.springapp.repositories.UserRepository;
+import lombok.Data;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -18,13 +20,24 @@ import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
+@Data
 @RequiredArgsConstructor
 public class UserService implements UserDetailsService {
 
     private final UserRepository userRepository;
+    private final RoleRepository roleRepository;
 
     public Optional<User> findByUsername(String username) {
         return userRepository.findByUsername(username);
+    }
+
+    @Transactional
+    public void createNewUser(User user, String role){
+        User u = userRepository.save(user);
+//        Role r = new Role();
+//        r.setName(role);
+//        u.getRoles().add(r);
+//        userRepository.save(u);
     }
 
     public List<User> getAll(){
