@@ -1,13 +1,31 @@
 package com.example.springapp.data;
 
-public class Product {
+import javax.persistence.*;
 
-    private long id;
+@Entity
+@Table(name = "products")
+public class Product {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id")
+    private Long id;
+
+    @Column(name = "name")
     private String name;
+
+    @Column(name = "price")
     private int price;
 
-    public Product(long id, String name, int price) {
+    public Product(Long id, String name, int price) {
         this.id = id;
+        this.name = name;
+        this.price = price;
+    }
+
+    public Product() {
+    }
+
+    public Product(String name, int price) {
         this.name = name;
         this.price = price;
     }
@@ -16,12 +34,12 @@ public class Product {
         return id;
     }
 
-    public void changePrice (Integer delta){
-        price = price + delta;
+    public void setId(Long id) {
+        this.id = id;
     }
 
-    public void setId(long id) {
-        this.id = id;
+    public void changePrice (Integer delta){
+        price = price + delta;
     }
 
     public String getName() {
