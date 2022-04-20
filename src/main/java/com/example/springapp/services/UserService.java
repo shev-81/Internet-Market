@@ -34,10 +34,9 @@ public class UserService implements UserDetailsService {
     @Transactional
     public void createNewUser(User user, String role){
         User u = userRepository.save(user);
-//        Role r = new Role();
-//        r.setName(role);
-//        u.getRoles().add(r);
-//        userRepository.save(u);
+        Role r = roleRepository.findRoleByName(role);
+        u.getRoles().add(r);
+        userRepository.save(u);
     }
 
     public List<User> getAll(){

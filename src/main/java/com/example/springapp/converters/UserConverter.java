@@ -25,15 +25,12 @@ public class UserConverter {
 
     public User dtoToEntity(UserDto userDto) {
         User u = new User();
-//        List<Role> roleList = new ArrayList<>();
+        List<Role> roleList = new ArrayList<>();
         u.setId(0L);
         u.setUsername(userDto.getName());
         u.setEmail(userDto.getMail());
         u.setPassword(passwordEncoder.encode(userDto.getPass()));
-//        Role r = new Role();
-//        r.setName(userDto.getRoles());
-//        roleList.add(r);
-//        u.setRoles(roleList);
+        u.setRoles(roleList);  //todo надо ли это?
         return u;
     }
 
