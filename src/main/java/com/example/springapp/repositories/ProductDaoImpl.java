@@ -26,19 +26,6 @@ public class ProductDaoImpl implements ProductDao {
     }
 
     @Override
-    public Product findByName(String name) {
-        try (Session session = sessionFactoryUtils.getSession()) {
-            session.beginTransaction();
-            Product product = session
-                    .createQuery("select product from Product product where product.name = :name", Product.class)
-                    .setParameter("name", name)
-                    .getSingleResult();
-            session.getTransaction().commit();
-            return product;
-        }
-    }
-
-    @Override
     public List<Product> findAll() {
         try (Session session = sessionFactoryUtils.getSession()) {
             session.beginTransaction();
@@ -53,39 +40,6 @@ public class ProductDaoImpl implements ProductDao {
         try (Session session = sessionFactoryUtils.getSession()) {
             session.beginTransaction();
             session.saveOrUpdate(product);
-            session.getTransaction().commit();
-        }
-    }
-
-    @Override
-    public void updateNameById(Long id, String newName) {
-//            HQL Example:
-//            session.createQuery("update User u set u.name = :name where u.id = :id")
-//                    .setParameter("name", newName)
-//                    .setParameter("id", id)
-//                    .executeUpdate();
-        try (Session session = sessionFactoryUtils.getSession()) {
-            session.beginTransaction();
-            Product product = session.get(Product.class, id);
-            product.setName(newName);
-            session.getTransaction().commit();
-        }
-    }
-
-    @Override
-    public void testCaching() {
-        try (Session session = sessionFactoryUtils.getSession()) {
-            session.beginTransaction();
-            session.get(Product.class, 1L);
-            session.get(Product.class, 1L);
-            session.get(Product.class, 1L);
-            session.getTransaction().commit();
-        }
-        try (Session session = sessionFactoryUtils.getSession()) {
-            session.beginTransaction();
-            session.get(Product.class, 1L);
-            session.get(Product.class, 1L);
-            session.get(Product.class, 1L);
             session.getTransaction().commit();
         }
     }

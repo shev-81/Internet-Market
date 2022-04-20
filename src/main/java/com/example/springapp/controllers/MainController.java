@@ -24,7 +24,6 @@ public class MainController {
     public void delProducts(@PathVariable Long id){
         servicesProducts.delProdictById(id);
     }
-    // /products/change_price
 
     @GetMapping("/products/change_price")
     public void changePrice(@RequestParam Long productId, @RequestParam Integer delta){
