@@ -3,6 +3,7 @@ package com.example.springapp.services;
 import com.example.springapp.entities.Product;
 import com.example.springapp.repositories.ProductRepository;
 import com.example.springapp.repositories.specifications.ProductSpecifications;
+import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.jpa.domain.Specification;
@@ -11,13 +12,10 @@ import org.springframework.stereotype.Service;
 import java.util.Optional;
 
 @Service
+@RequiredArgsConstructor
 public class ServicesProducts {
 
-    private ProductRepository productRepository;
-
-    public ServicesProducts(ProductRepository productRepository) {
-        this.productRepository = productRepository;
-    }
+    private final ProductRepository productRepository;
 
     public Page<Product> find(Integer minScore, Integer maxScore, String partName, Integer page) {
         Specification<Product> spec = Specification.where(null);

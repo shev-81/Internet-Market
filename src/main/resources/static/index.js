@@ -67,6 +67,14 @@ angular.module('app', ['ngStorage']).controller('indexController', function ($sc
             });
     }
 
+    $scope.createOrder = function(){
+        console.log("new Order");
+        $http.post(contextPath +'/carts'
+            ).then(function (response) {
+            $scope.loadCart();
+        });
+    }
+
     $scope.createProduct = function(){
 //    console.log($scope.newProduct);
         $http.post(contextPath + '/products', $scope.newProduct
@@ -82,21 +90,24 @@ angular.module('app', ['ngStorage']).controller('indexController', function ($sc
             });
     }
 
-    $scope.deleteProductInCart = function (productId) {
-        $http.delete(contextPath + '/products/cart/' + productId)
+    $scope.addToCart = function (productId) {
+        $http.get('http://localhost:8189/app/api/v1/carts/add/' + productId)
             .then(function (response) {
-                $scope.ProductCartList = response.data;
+                $scope.loadCart();
             });
     }
 
-
-
-    $scope.addProductInCart = function (productId){
-        // console.log(productId);
-        $http.get(contextPath + '/products/cart/' + productId)
+    $scope.clearCart = function () {
+        $http.get('http://localhost:8189/app/api/v1/carts/clear')
             .then(function (response) {
-                console.log((response.data));
-                $scope.ProductCartList = response.data;
+                $scope.loadCart();
+            });
+    }
+
+    $scope.loadCart = function () {
+        $http.get('http://localhost:8189/app/api/v1/carts')
+            .then(function (response) {
+                $scope.Cart = response.data;
             });
     }
 

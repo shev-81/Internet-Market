@@ -4,7 +4,6 @@ import com.example.springapp.converters.ProductConverter;
 import com.example.springapp.entities.Product;
 import com.example.springapp.dto.ProductDto;
 import com.example.springapp.exceptions.ResourceNotFoundException;
-import com.example.springapp.repositories.cart.ProductCart;
 import com.example.springapp.services.ServicesProducts;
 import com.example.springapp.validators.ProductValidator;
 import lombok.AllArgsConstructor;
@@ -12,8 +11,6 @@ import lombok.Data;
 import org.springframework.data.domain.Page;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.List;
 
 @Data
 @AllArgsConstructor
@@ -24,7 +21,6 @@ public class ProductController {
    private ServicesProducts servicesProducts;
    private ProductConverter productConverter;
    private ProductValidator productValidator;
-   private ProductCart productCart;
 
     @GetMapping
     public Page<ProductDto> getAllProducts(
@@ -41,15 +37,6 @@ public class ProductController {
         );
     }
 
-
-    @GetMapping("/cart/{id}")
-    public List<ProductDto> productCart (@PathVariable Long id) {
-        System.out.println(id);
-        Product product = servicesProducts.findById(id).orElseThrow(() -> new ResourceNotFoundException("Product not found, id: " + id));
-        productCart.add(productConverter.entityToDto(product));
-        return productCart.getProductDtoList();
-    }
-
     @PostMapping
     @PreAuthorize("hasRole('MANAGER')")
     public ProductDto saveProduct(@RequestBody ProductDto productDto){
@@ -58,11 +45,6 @@ public class ProductController {
         Product product = productConverter.dtoToEntity(productDto);
         product = servicesProducts.save(product);
         return productConverter.entityToDto(product);
-    }
-
-    @DeleteMapping("/cart/{id}")
-    public List<ProductDto> deleteProductInCart (@PathVariable Long id){
-        return productCart.removeProductById(id);
     }
 
     @DeleteMapping("/{id}")
