@@ -57,7 +57,7 @@ public class CartService {
         orders.setAddress("Lorem, ipsum dolor sit amet consectetur adipisicing elit. Velit atque quasi ipsum.");
         orders.setTotalPrice(0);
         orders.setOrderItems(orderItemList);
-        orders.setUsers(user);
+        orders.setUser(user);
 
         ordersRepository.save(orders);
 
@@ -69,7 +69,7 @@ public class CartService {
             orderItemList.add(orderItem);
         }
         // todo ПРОДОЛЖИТЬ ДЛЯ СОХРАНЕНИЯ В БД ОРДЕРА ДЛЯ ПОЛЬЗОВАТЕЛЯ
-//        User user = userRepository.findByUsername(principal.getName()).orElseThrow(() -> new UsernameNotFoundException("User  not found"));
+        user.getOrders().add(orders);
 //        List<Orders> userOrdersList = new ArrayList<>();
 //        userOrdersList.add(orders);
 //        user.setOrders(userOrdersList);
