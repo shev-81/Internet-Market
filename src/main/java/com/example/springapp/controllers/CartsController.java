@@ -5,10 +5,9 @@ import com.example.springapp.services.CartService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
-import java.security.Principal;
 
 @RestController
-@RequestMapping("/api/v1/carts")
+@RequestMapping("/api/v1/cart")
 @RequiredArgsConstructor
 public class CartsController {
     private final CartService cartService;
@@ -26,10 +25,5 @@ public class CartsController {
     @GetMapping("/clear")
     public void clearCart() {
         cartService.getCurrentCart().clear();
-    }
-
-    @PostMapping
-    public void createOrder(Principal principal) {
-        cartService.saveOrderFromCart(principal);
     }
 }

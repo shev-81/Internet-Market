@@ -3,36 +3,45 @@ package com.example.springapp.entities;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
 
 import javax.persistence.*;
+import java.time.LocalDateTime;
+
 @Entity
+@Table(name = "order_items")
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-@Table(name = "order_items")
 public class OrderItem {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id", nullable = false)
+    @Column(name = "id")
     private Long id;
 
-    @Column(name = "product_id")
-    Long productId;
+    @ManyToOne
+    @JoinColumn(name = "product_id")
+    private Product product;
 
     @Column(name = "quantity")
-    Integer quantity;
+    private Integer quantity;
 
     @Column(name = "price_per_product")
-    Integer pricePerProduct;
+    private Integer pricePerProduct;
 
     @Column(name = "price")
-    Integer price;
+    private Integer price;
 
     @ManyToOne
     @JoinColumn(name = "order_id")
-    private Orders orders;
+    private Order order;
 
-    @ManyToOne
-    @JoinColumn(name = "user_id")
-    private User users;
+    @CreationTimestamp
+    @Column(name = "created_at")
+    private LocalDateTime createdAt;
+
+    @UpdateTimestamp
+    @Column(name = "updated_at")
+    private LocalDateTime updatedAt;
 }

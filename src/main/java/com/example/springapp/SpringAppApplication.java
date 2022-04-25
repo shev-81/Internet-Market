@@ -1,7 +1,7 @@
 package com.example.springapp;
 
 /**
- * Домашнее Задание к 1 лекции Разработка интернет-магазина на Spring Framework
+ * Домашнее Задание к 2 лекции Разработка интернет-магазина на Spring Framework
  */
 
 import org.springframework.boot.SpringApplication;

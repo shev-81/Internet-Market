@@ -7,14 +7,11 @@ import org.springframework.stereotype.Component;
 @Component
 public class OrderItemsConverter {
 
-    public OrderItem dtoToEntity(OrderItemDto o) {
+    public OrderItem dtoToEntity(OrderItemDto orderItemDto) {
+        throw new UnsupportedOperationException();
+    }
 
-        OrderItem oItem = new OrderItem();
-        oItem.setProductId(o.getProductId());
-        oItem.setQuantity(o.getQuantity());
-        oItem.setPricePerProduct(o.getPricePerProduct());
-        oItem.setPrice(o.getPricePerProduct() * o.getQuantity());
-
-        return oItem;
+    public OrderItemDto entityToDto(OrderItem orderItem) {
+        return new OrderItemDto(orderItem.getProduct().getId(), orderItem.getProduct().getName(), orderItem.getQuantity(), orderItem.getPricePerProduct(), orderItem.getPrice());
     }
 }

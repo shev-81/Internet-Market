@@ -1,15 +1,17 @@
 create table users (
-                       id                    bigserial,
+                       id                    bigserial primary key,
                        username              varchar(30) not null unique,
                        password              varchar(80) not null,
                        email                 varchar(50) unique,
-                       primary key (id)
+                       created_at            timestamp default current_timestamp,
+                       updated_at            timestamp default current_timestamp
 );
 
 create table roles (
-                       id                    serial,
+                       id                    serial primary key,
                        name                  varchar(50) not null,
-                       primary key (id)
+                       created_at            timestamp default current_timestamp,
+                       updated_at            timestamp default current_timestamp
 );
 
 CREATE TABLE users_roles (
@@ -44,15 +46,18 @@ CREATE TABLE orders (
                        user_id         bigserial not null references users (id),
                        total_price     int not null,
                        address         varchar(255),
-                       phone           varchar(255)
+                       phone           varchar(255),
+                       created_at  timestamp default current_timestamp,
+                       updated_at  timestamp default current_timestamp
 );
 
 CREATE TABLE order_items (
                              id                      bigserial primary key,
                              product_id              bigserial not null references products (id),
-                             user_id                 bigserial not null references users (id),
                              order_id                bigserial not null references orders (id),
                              quantity                int not null,
                              price_per_product       int not null,
-                             price                   int not null
+                             price                   int not null,
+                             created_at        timestamp default current_timestamp,
+                             updated_at        timestamp default current_timestamp
 );

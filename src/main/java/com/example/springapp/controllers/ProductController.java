@@ -61,12 +61,4 @@ public class ProductController {
         product = servicesProducts.save(product);
         return  productConverter.entityToDto(product);
     }
-
-    @GetMapping("/change_price")
-    @PreAuthorize("hasRole('MANAGER')")
-    public void changePrice(@RequestParam Long productId, @RequestParam Integer delta){
-        Product product = servicesProducts.findById(productId).orElseThrow(() -> new ResourceNotFoundException("Product not found, id: " + productId));
-        product.changePrice(delta);
-        servicesProducts.save(product);
-    }
 }

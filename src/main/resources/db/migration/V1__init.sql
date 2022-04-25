@@ -1,4 +1,11 @@
-CREATE TABLE IF NOT EXISTS products (id bigserial, price int, name VARCHAR(255), PRIMARY KEY (id));
+CREATE TABLE IF NOT EXISTS products (
+    id bigserial,
+    price int,
+    name VARCHAR(255),
+    created_at timestamp default current_timestamp,
+    updated_at timestamp default current_timestamp,
+    PRIMARY KEY (id)
+    );
 
 INSERT INTO products (name, price) VALUES ('Apple', 180),
                                           ('Orange', 210),
