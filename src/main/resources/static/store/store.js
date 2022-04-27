@@ -23,13 +23,13 @@ angular.module('market-front').controller('storeController', function ($scope, $
             });
     }
 
-    $scope.loadOrders = function () {
-        $http.get(contextPath + '/orders')
-            .then(function (response) {
-                $scope.MyOrders = response.data;
-            });
-    }
+//    $scope.loadOrders = function () {
+//        $http.get(contextPath + '/orders')
+//            .then(function (response) {
+//                $scope.MyOrders = response.data;
+//            });
+//    }
 
     $scope.loadProducts();
-    $scope.loadOrders();
+//    $scope.loadOrders();
 });
