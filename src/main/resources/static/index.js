@@ -7,7 +7,15 @@ angular.module('app', []).controller('indexController', function ($scope, $http)
                 $scope.ProductList = response.data;
             });
     };
-
+    
+    $scope.createProduct = function(){
+        $http.post(contextPath + '/products', $scope.newProduct
+        ).then(function (response) {
+            $scope.loadProducts();
+            $scope.newProduct = null;
+        });
+    }
+    
     $scope.lowPriceProducts = function (price) {
         $http.get(contextPath + '/products/low/' + price
             ).then(function (response) {
@@ -55,5 +63,5 @@ angular.module('app', []).controller('indexController', function ($scope, $http)
         });
     }
 
-    $scope.loadProducts();      //  запуск функции при загрузке страницы
+    $scope.loadProducts();
 });

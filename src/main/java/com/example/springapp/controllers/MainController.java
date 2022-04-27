@@ -47,4 +47,9 @@ public class MainController {
     public List<Product> getPriceProductsBetween(@RequestParam Integer priceOne, @RequestParam Integer priceTwo){
         return servicesProducts.findAllBetweenPrice(priceOne, priceTwo);
     }
+
+    @PostMapping("/products")
+    public Product saveProduct(@RequestBody Product product){
+        return servicesProducts.save(product);
+    }
 }
