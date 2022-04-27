@@ -30,30 +30,26 @@ public class MainController {
     public void changePrice(@RequestParam Long productId, @RequestParam Integer delta){
         Product product = servicesProducts.getProductById(productId);
         product.changePrice(delta);
+        servicesProducts.save(product);
     }
 
+    @GetMapping("/products/low/{price}")
+    public List<Product> getLowPriceProducts(@PathVariable Integer price){
+        return servicesProducts.findAllByLowPrice(price);
+    }
 
-//    // localhost:8189/app/first
-//    @GetMapping("/first")
-//    @ResponseBody
-//    public String first(@RequestParam(required = false) int a, @RequestParam(name = "bb") int b){
-//        return  "сумма A + B = " + (a+b);
-//    }
-//
-//    // localhost:8189/app/product/{id}/info
-//    @GetMapping("/showProdId/{id}/info")
-//    @ResponseBody
-//    public String showProdId(@PathVariable Long id){
-//        return "Product" + id;
-//    }
-//
-//    @GetMapping("/product/{id}")
-//    public String showProd(Model model, @PathVariable Long id){
-//        Product prod = productRepository.findById(id);
-//        model.addAttribute("product", prod);
-//        return "product_page";
-//    }
-//
+    @GetMapping("/products/hi/{price}")
+    public List<Product> getHiPriceProducts(@PathVariable Integer price){
+        return servicesProducts.findAllByHiPrice(price);
+    }
 
+    @GetMapping("/products/between")
+    public List<Product> getPriceProductsBetween(@RequestParam Integer priceOne, @RequestParam Integer priceTwo){
+        return servicesProducts.findAllBetweenPrice(priceOne, priceTwo);
+    }
 
+    @PostMapping("/products")
+    public Product saveProduct(@RequestBody Product product){
+        return servicesProducts.save(product);
+    }
 }
