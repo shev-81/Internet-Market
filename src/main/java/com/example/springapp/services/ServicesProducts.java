@@ -16,8 +16,9 @@ import java.util.Optional;
 public class ServicesProducts {
 
     private final ProductRepository productRepository;
+    private final CategoryService categoryService;
 
-    public Page<Product> find(Integer minScore, Integer maxScore, String partName, Integer page) {
+    public Page<Product> findAll(Integer minScore, Integer maxScore, String partName, String nameCategory, Integer page) {
         Specification<Product> spec = Specification.where(null);
         if (minScore != null) {
             spec = spec.and(ProductSpecifications.scoreGreaterOrEqualsThan(minScore));
@@ -27,6 +28,10 @@ public class ServicesProducts {
         }
         if (partName != null) {
             spec = spec.and(ProductSpecifications.nameLike(partName));
+        }
+        if (nameCategory != null) {
+            Integer idCategory = categoryService.getIdCategoryByName(nameCategory);
+            spec = spec.and(ProductSpecifications.categoryLike(idCategory));
         }
         return productRepository.findAll(spec, PageRequest.of(page - 1, 10));
     }

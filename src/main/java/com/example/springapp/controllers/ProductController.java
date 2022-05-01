@@ -4,6 +4,7 @@ import com.example.springapp.converters.ProductConverter;
 import com.example.springapp.entities.Product;
 import com.example.springapp.dto.ProductDto;
 import com.example.springapp.exceptions.ResourceNotFoundException;
+import com.example.springapp.services.CategoryService;
 import com.example.springapp.services.ServicesProducts;
 import com.example.springapp.validators.ProductValidator;
 import lombok.AllArgsConstructor;
@@ -22,18 +23,19 @@ public class ProductController {
    private ProductConverter productConverter;
    private ProductValidator productValidator;
 
-    @GetMapping
+   @GetMapping
     public Page<ProductDto> getAllProducts(
             @RequestParam(name = "p", defaultValue = "1") Integer page,
             @RequestParam(name = "min_price", required = false) Integer minPrice,
             @RequestParam(name = "max_price", required = false) Integer maxPrice,
+            @RequestParam(name = "name_category", required = false) String  nameCategory,
             @RequestParam(name = "name_part", required = false) String namePart
     ) {
         if (page < 1) {
             page = 1;
         }
-        return servicesProducts.find(minPrice, maxPrice, namePart, page)
-                .map(s -> new ProductDto(s.getId(),s.getName(), s.getPrice())
+        return servicesProducts.findAll(minPrice, maxPrice, namePart, nameCategory, page).map(
+                p -> productConverter.entityToDto(p)
         );
     }
 
