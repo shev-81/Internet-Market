@@ -19,7 +19,12 @@ public interface ProductRepository extends JpaRepository<Product, Long>, JpaSpec
 
     @Query("select p from Product p where p.price between :priceOne and :priceTwo")
     List<Product> findAllBetweenPrice(Integer priceOne, Integer priceTwo);
+
+    @Query("select p from Product p where p.name = :name")
+    Product findByName(String name);
     }
+
+
 
 
     // @Query("select s from Student s where s.score between ?1 and ?2")

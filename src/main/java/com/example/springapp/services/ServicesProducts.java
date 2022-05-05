@@ -9,6 +9,7 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -34,6 +35,14 @@ public class ServicesProducts {
             spec = spec.and(ProductSpecifications.categoryLike(idCategory));
         }
         return productRepository.findAll(spec, PageRequest.of(page - 1, 10));
+    }
+
+    public Product getByName (String name) {
+        return productRepository.findByName(name);
+    }
+
+    public List<Product> findAll() {
+        return productRepository.findAll();
     }
 
     public Optional<Product> findById(Long id) {

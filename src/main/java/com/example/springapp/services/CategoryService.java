@@ -16,6 +16,10 @@ public class CategoryService {
         return categoriesRepository.getAll();
     }
 
+    public Category getCategoryByName(String nameCategory){
+        return categoriesRepository.findByName(nameCategory);
+    }
+
     public Integer getIdCategoryByName(String nameCategory){
         return categoriesRepository.findIdByName(nameCategory);
     }
