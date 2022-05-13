@@ -10,11 +10,13 @@ import lombok.Data;
 import org.springframework.data.domain.Page;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
 @Data
 @AllArgsConstructor
 @RestController
 @RequestMapping("/api/v1/products")
-//@CrossOrigin("*")
 public class ProductController {
 
    private ServicesProducts servicesProducts;
@@ -36,6 +38,11 @@ public class ProductController {
                 p -> productConverter.entityToDto(p)
         );
     }
+
+    @GetMapping("/all")
+    public List<ProductDto> getAll(){
+       return servicesProducts.findAll().stream().map(p -> productConverter.entityToDto(p)).collect(Collectors.toList());
+   }
 
     @PostMapping
     public ProductDto saveProduct(@RequestBody ProductDto productDto){
