@@ -1,7 +1,7 @@
 package com.example.springapp.controllers;
 
 import com.example.springapp.converters.CategoryConverter;
-import com.example.springapp.dto.CategoryDto;
+import com.exemple.spring.core.CategoryDto;
 import com.example.springapp.entities.Category;
 import com.example.springapp.services.CategoryService;
 import lombok.RequiredArgsConstructor;

@@ -1,6 +1,6 @@
 package com.example.springapp.converters;
 
-import com.example.springapp.dto.OrderItemDto;
+import com.exemple.spring.core.OrderItemDto;
 import com.example.springapp.entities.OrderItem;
 import org.springframework.stereotype.Component;
 

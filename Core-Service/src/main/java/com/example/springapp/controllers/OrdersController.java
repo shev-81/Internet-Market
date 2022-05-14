@@ -2,9 +2,9 @@ package com.example.springapp.controllers;
 
 
 import com.example.springapp.converters.OrderConverter;
-import com.example.springapp.dto.OrderDetailsDto;
-import com.example.springapp.dto.OrderDto;
+import com.exemple.spring.core.OrderDetailsDto;
 import com.example.springapp.services.OrderService;
+import com.exemple.spring.core.OrderDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;

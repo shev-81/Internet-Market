@@ -1,7 +1,7 @@
 package com.example.springapp.controllers;
 
 
-import com.example.springapp.dto.ProfileDto;
+import com.exemple.spring.core.ProfileDto;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;

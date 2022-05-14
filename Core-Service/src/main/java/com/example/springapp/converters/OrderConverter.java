@@ -1,6 +1,6 @@
 package com.example.springapp.converters;
 
-import com.example.springapp.dto.OrderDto;
+import com.exemple.spring.core.OrderDto;
 import com.example.springapp.entities.Order;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;

@@ -1,7 +1,7 @@
 package com.example.springapp.validators;
 
-import com.example.springapp.dto.ProductDto;
 import com.example.springapp.exceptions.ValidationException;
+import com.exemple.spring.core.ProductDto;
 import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;

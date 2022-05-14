@@ -7,7 +7,9 @@
         <module>Core-Service</module>
 		<module>Front-Service</module>
         <module>GateWay</module>
-        <module>Aurt-Service</module>
+        <module>Auth-Service</module>
+        <module>api</module>
+        <module>Cart-Service</module>
     </modules>
 
     <parent>

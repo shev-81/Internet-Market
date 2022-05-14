@@ -23,3 +23,6 @@ spring:
         web-allow-others: false
 jwt:
   secret: h4f8093h4f983yhrt9834hr0934hf0hf493g493gf438rh438th34g34g
+integrations:
+  cart-service:
+    url: http://localhost:5555/cart

@@ -1,12 +1,13 @@
 package com.example.springapp.services;
 
 
-import com.example.springapp.dto.Cart;
-import com.example.springapp.dto.OrderDetailsDto;
 import com.example.springapp.entities.Order;
 import com.example.springapp.entities.OrderItem;
-import com.example.springapp.exceptions.ResourceNotFoundException;
+import com.example.springapp.integrations.CartServiceIntegration;
 import com.example.springapp.repositories.OrdersRepository;
+import com.exemple.spring.cart.CartDto;
+import com.exemple.spring.core.OrderDetailsDto;
+import com.exemple.spring.exceptions.ResourceNotFoundException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -18,13 +19,12 @@ import java.util.stream.Collectors;
 @RequiredArgsConstructor
 public class OrderService {
     private final OrdersRepository ordersRepository;
-    private final CartService cartService;
-    private final ServicesProducts productsService;
+    private final CartServiceIntegration cartServiceIntegration;
+    private final ProductService productsService;
 
     @Transactional
     public void createOrder(String username, OrderDetailsDto orderDetailsDto) {
-        String cartKey = cartService.getCartUuidFromSuffix(username);
-        Cart currentCart = cartService.getCurrentCart(cartKey);
+        CartDto currentCart = cartServiceIntegration.getUserCart(username);
         Order order = new Order();
         order.setAddress(orderDetailsDto.getAddress());
         order.setPhone(orderDetailsDto.getPhone());
@@ -42,7 +42,7 @@ public class OrderService {
                 }).collect(Collectors.toList());
         order.setItems(items);
         ordersRepository.save(order);
-        cartService.clearCart(cartKey);
+        cartServiceIntegration.clearUserCart(username);
     }
 
     public List<Order> findOrdersByUsername(String username) {

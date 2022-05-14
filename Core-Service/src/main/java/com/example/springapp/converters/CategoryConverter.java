@@ -1,7 +1,7 @@
 package com.example.springapp.converters;
 
-import com.example.springapp.dto.CategoryDto;
 import com.example.springapp.entities.Category;
+import com.exemple.spring.core.CategoryDto;
 import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;

@@ -1,7 +1,7 @@
 package com.example.springapp.endpoints;
 
 import com.example.springapp.entities.Product;
-import com.example.springapp.services.ServicesProducts;
+import com.example.springapp.services.ProductService;
 import com.example.springapp.soap.products.*;
 import lombok.RequiredArgsConstructor;
 import org.springframework.ws.server.endpoint.annotation.Endpoint;
@@ -15,13 +15,13 @@ import java.util.List;
 @RequiredArgsConstructor
 public class ProductsEndpoint {
     private static final String NAMESPACE_URI = "http://www.shev.com/spring/ws/products";
-    private final ServicesProducts servicesProducts;
+    private final ProductService productService;
 
     @PayloadRoot(namespace = NAMESPACE_URI, localPart = "getProductByNameRequest")
     @ResponsePayload
     public GetProductByNameResponse getProductByName(@RequestPayload GetProductByNameRequest request) {
         GetProductByNameResponse response = new GetProductByNameResponse();
-        Product product = servicesProducts.getByName(request.getName());
+        Product product = productService.getByName(request.getName());
         ProductSoap productSoap = new ProductSoap();
         productSoap.setId(product.getId());
         productSoap.setName(product.getName());
@@ -46,7 +46,7 @@ public class ProductsEndpoint {
     @ResponsePayload
     public GetAllProductsResponse getAllStudents(@RequestPayload GetAllProductsRequest request) {
         GetAllProductsResponse response = new GetAllProductsResponse();
-        List<Product> listProducts = servicesProducts.findAll();
+        List<Product> listProducts = productService.findAll();
         for(Product product: listProducts){
             ProductSoap productSoap = new ProductSoap();
             productSoap.setId(product.getId());

@@ -1,6 +1,6 @@
 package com.example.springapp.test;
 
-import com.example.springapp.dto.ProductDto;
+import com.exemple.spring.core.ProductDto;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
