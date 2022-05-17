@@ -9,6 +9,7 @@ import org.springframework.web.reactive.function.client.WebClient;
 @Component
 @RequiredArgsConstructor
 public class CartServiceIntegration {
+
     private final WebClient cartServiceWebClient;
 
     public void clearUserCart(String username) {

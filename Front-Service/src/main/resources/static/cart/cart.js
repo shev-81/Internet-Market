@@ -24,7 +24,7 @@ angular.module('market-front').controller('cartController', function ($scope, $h
 
     $scope.checkOut = function () {
         $http({
-            url: contextPath + 'api/v1/orders',
+            url: 'http://localhost:5555/core/api/v1/orders',
             method: 'POST',
             data: $scope.orderDetails
         }).then(function (response) {

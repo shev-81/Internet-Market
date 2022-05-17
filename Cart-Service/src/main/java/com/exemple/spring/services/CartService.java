@@ -3,6 +3,7 @@ package com.exemple.spring.services;
 import com.exemple.spring.core.ProductDto;
 
 import com.exemple.spring.exceptions.ResourceNotFoundException;
+import com.exemple.spring.integrations.AnalitServiceIntegration;
 import com.exemple.spring.integrations.ProductServiceIntegration;
 import com.exemple.spring.models.Cart;
 import lombok.RequiredArgsConstructor;
@@ -17,6 +18,7 @@ import java.util.function.Consumer;
 @RequiredArgsConstructor
 public class CartService {
     private final ProductServiceIntegration productsService;
+    private final AnalitServiceIntegration analitService;
     private final RedisTemplate<String, Object> redisTemplate;
 
     @Value("${utils.cart.prefix}")
@@ -39,6 +41,7 @@ public class CartService {
 
     public void addToCart(String cartKey, Long productId) {
         ProductDto productDto = productsService.findById(productId).orElseThrow(() -> new ResourceNotFoundException("Невозможно добавить продукт в корзину. Продукт не найдет, id: " + productId));
+        analitService.registration(productDto);
         execute(cartKey, c -> {
             c.add(productDto);
         });

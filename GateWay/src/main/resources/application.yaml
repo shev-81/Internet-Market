@@ -29,7 +29,7 @@ spring:
             - Path=/cart/**
           filters:
             - StripPrefix=1
-            - PrefixPath=/market-cart
+            - PrefixPath=/web-market-cart
             - JwtAuthFilter
         - id: auth-service
           uri: http://localhost:8188/
@@ -38,6 +38,14 @@ spring:
           filters:
             - StripPrefix=1
             - PrefixPath=/web-market-auth
+            - JwtAuthFilter
+        - id: analit-service
+          uri: http://localhost:8111/
+          predicates:
+            - Path=/analit/**
+          filters:
+            - StripPrefix=1
+            - PrefixPath=/web-market-analit
             - JwtAuthFilter
 
 jwt:

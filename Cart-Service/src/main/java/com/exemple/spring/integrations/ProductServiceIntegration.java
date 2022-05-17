@@ -12,7 +12,7 @@ import java.util.Optional;
 @Component
 public class ProductServiceIntegration {
 
-    private RestTemplate restTemplate;
+    private final RestTemplate restTemplate;
 
     @Value("${integrations.core-service.url}")
     private String productServiceUrl;

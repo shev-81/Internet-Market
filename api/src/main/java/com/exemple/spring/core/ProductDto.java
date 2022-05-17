@@ -11,6 +11,10 @@ public class ProductDto {
         this.price = price;
     }
 
+    public ProductDto(String name) {
+        this.name = name;
+    }
+
     public ProductDto() {
     }
 
