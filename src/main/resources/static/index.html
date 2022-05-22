@@ -15,6 +15,35 @@
 <body>
 
 <div class="container" ng-controller="indexController">
+    <h3>Введите новый продукт:</h3>
+    <form novalidate ng-submit="createProduct()">
+        <input class="form-control" type="text" placeholder="имя продукта" ng-model="newProduct.name">
+        <label for="filterName">Название продукта</label>
+        <input class="form-control" type="number" placeholder="0" ng-model="newProduct.price">
+        <label for="filterName">Цена</label>
+        <p></p>
+        <BUTTON class="btn btn-primary" type="submit">Сохранить</BUTTON>
+    </form>
+    <p></p>
+    <h3>Фильтр продуктов:</h3>
+    <form novalidate ng-submit="loadProducts()">
+        <div class="form-floating input-group-sm">
+            <input type="text" class="form-control" id="filterName" placeholder="" ng-model="filter.name_part">
+            <label for="filterName">Название продукта</label>
+        </div>
+        <p></p>
+        <div class="form-floating input-group-sm">
+            <input type="number" class="form-control" id="filterMinScore" placeholder="" ng-model="filter.min_price">
+            <label for="filterMinScore">Мин. цена</label>
+        </div>
+        <p></p>
+        <div class="form-floating input-group-sm">
+            <input type="number" class="form-control" id="filterMaxScore" placeholder="" ng-model="filter.max_price">
+            <label for="filterMaxScore">Макс. цена</label>
+        </div>
+        <p></p>
+        <button class="btn btn-outline-warning btn-sm" style="width: 100%;" type="submit">Применить</button>
+    </form>
     <h3>Список продуктов</h3>
     <table class="table table-hover" cellpadding="0" cellspacing="0">
         <tr>
@@ -22,6 +51,7 @@
             <td>Название</td>
             <td>Стоимость</td>
             <td>Действие</td>
+            <td></td>
             <td></td>
         </tr>
         <tbody>
@@ -35,11 +65,35 @@
                 <button class="btn btn-primary" ng-click="changePrice(p.id, 5)">+</button>
             </td>
             <td>
-                <button class="btn btn-danger" ng-click="deleteProduct(p.id)">Исключить</button>
+                <button class="btn btn-danger" ng-click="deleteProduct(p.id)">Удалить</button>
+            </td>
+            <td>
+                <button class="btn btn-primary" ng-click="addProductInCart(p.id)">В корзину</button>
             </td>
         </tr>
         </tbody>
     </table>
-</div>
+    <button class="btn btn-primary" ng-click="loadProducts(filter.p = 1)">1</button>
+    <button class="btn btn-primary" ng-click="loadProducts(filter.p = 2)">2</button>
+    <h3>Корзина продуктов</h3>
+    <table class="table table-hover" cellpadding="0" cellspacing="0">
+        <tr>
+            <td>ID</td>
+            <td>Название</td>
+            <td>Стоимость</td>
+            <td></td>
+        </tr>
+        <tbody>
+        <tr ng-repeat="productCart in ProductCartList">
+            <td>{{productCart.id}}</td>
+            <td>{{productCart.name}}</td>
+            <td>{{productCart.price}}</td>
+            <td>
+                <button class="btn btn-danger" ng-click="deleteProductFromCart(productCart.id)">Удалить</button>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+   </div>
 </body>
 </html>
