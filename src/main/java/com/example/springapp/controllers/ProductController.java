@@ -40,9 +40,14 @@ public class ProductController {
 
 
     @GetMapping("/cart/{id}")
-    public List<ProductDto> productCart (@PathVariable Long id) {
+    public List<ProductDto> productInCart (@PathVariable Long id) {
         Product product = servicesProducts.findById(id).orElseThrow(() -> new ResourceNotFoundException("Product not found, id: " + id));
         productCart.add(productConverter.entityToDto(product));
+        return productCart.getProductDtoList();
+    }
+
+    @GetMapping("/cart")
+    public List<ProductDto> allProductCart () {
         return productCart.getProductDtoList();
     }
 
@@ -53,6 +58,11 @@ public class ProductController {
         Product product = productConverter.dtoToEntity(productDto);
         product = servicesProducts.save(product);
         return productConverter.entityToDto(product);
+    }
+
+    @DeleteMapping("/cart/{id}")
+    public void delProductsFromCart(@PathVariable Long id){
+        productCart.delProdictById(id);
     }
 
     @DeleteMapping("/{id}")

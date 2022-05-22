@@ -8,6 +8,7 @@ import org.springframework.stereotype.Component;
 
 import javax.annotation.PostConstruct;
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 @Component
@@ -25,5 +26,16 @@ public class ProductCart {
 
     public void add (ProductDto productDto){
         productDtoList.add(productDto);
+    }
+
+    public void delProdictById(Long id){
+        Iterator <ProductDto> iter = productDtoList.iterator();
+        while(iter.hasNext()){
+            ProductDto p = iter.next();
+            if(p.getId() == id){
+                iter.remove();
+                break;
+            }
+        }
     }
 }
