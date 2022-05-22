@@ -53,7 +53,12 @@ angular.module('market-front').controller('storeController', function ($scope, $
     $scope.addToCart = function (productId) {
         // console.log("Добавлен продукт");
         $http.get('http://localhost:5555/cart/api/v1/cart/'+ $localStorage.springWebGuestCartId + '/add/' + productId)
-            .then(function (response) {
+            .then(function successCallback(response) {
+                console.log("Добавили товар в корзину");
+            }, function errorCallback(response) {
+                console.log("Сервис лежит");
+                let ExceptionObj = response.data;
+                alert("Ошибка " + ExceptionObj.str);
             });
     }
 
