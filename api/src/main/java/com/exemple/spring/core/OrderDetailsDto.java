@@ -1,8 +1,14 @@
 package com.exemple.spring.core;
 
+import io.swagger.v3.oas.annotations.media.Schema;
 
+@Schema(description = "Модель деталей в заказе")
 public class OrderDetailsDto {
+
+    @Schema(description = "Адресс в заказе", required = true, example = "г. Москва")
     private String address;
+
+    @Schema(description = "Телефон в заказе", required = true, example = "8(903)495-12-23")
     private String phone;
 
     public OrderDetailsDto() {

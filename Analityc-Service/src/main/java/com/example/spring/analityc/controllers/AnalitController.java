@@ -6,6 +6,7 @@ import com.exemple.spring.core.ProductDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @RestController
@@ -22,9 +23,7 @@ public class AnalitController {
     }
 
     @PostMapping("/reg")
-//    public void saveStatistic (@RequestHeader String nameProduct){
-    public void saveStatistic (@RequestBody ProductDto product){
-        System.out.println(" Получили объект " + product.getName());
+    public void saveStatistic (@RequestBody ArrayList<ProductDto> product){
         analitService.register(product);
     }
 

@@ -6,19 +6,9 @@ import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
-import java.util.List;
 
 @Repository
 public interface ProductRepository extends JpaRepository<Product, Long>, JpaSpecificationExecutor<Product> {
-
-    @Query("select p from Product p where p.price < :price")
-    List<Product> lowPrice(Integer price);
-
-    @Query("select p from Product p where p.price > :price")
-    List<Product> hiPrice(Integer price);
-
-    @Query("select p from Product p where p.price between :priceOne and :priceTwo")
-    List<Product> findAllBetweenPrice(Integer priceOne, Integer priceTwo);
 
     @Query("select p from Product p where p.name = :name")
     Product findByName(String name);

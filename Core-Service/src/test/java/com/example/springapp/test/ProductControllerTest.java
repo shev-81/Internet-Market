@@ -12,6 +12,7 @@ import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
 
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -39,7 +40,7 @@ public class ProductControllerTest {
         Product product = new Product();
         product.setId(1L);
         product.setName("Orange");
-        product.setPrice(100);
+        product.setPrice(BigDecimal.valueOf(112.21));
 
         List<Product> allProducts = new ArrayList<>(Arrays.asList(product));
 

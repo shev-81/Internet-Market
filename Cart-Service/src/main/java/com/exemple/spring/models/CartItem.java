@@ -1,19 +1,33 @@
 package com.exemple.spring.models;
 
 import com.exemple.spring.core.ProductDto;
+import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.math.BigDecimal;
+
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
+@Schema(description = "Позиция в списке корзины")
 public class CartItem {
+
+    @Schema(description = "ID продукта", required = true, example = "1")
     private Long productId;
+
+    @Schema(description = "Наименование продукта", required = true, example = "Яблоко")
     private String productName;
+
+    @Schema(description = "Колилчество одного продукта", required = true, example = "7")
     private int quantity;
-    private int pricePerProduct;
-    private int price;
+
+    @Schema(description = "Цена за одну единицу продукта", required = true, example = "122.21")
+    private BigDecimal pricePerProduct;
+
+    @Schema(description = "Цена за одну единицу продукта умноженную на колличество", required = true, example = "855.47")
+    private BigDecimal price;
 
     public CartItem(ProductDto productDto) {
         this.productId = productDto.getId();
@@ -25,6 +39,6 @@ public class CartItem {
 
     public void changeQuantity(int delta) {
         this.quantity += delta;
-        this.price = this.quantity * this.pricePerProduct;
+        this.price = this.pricePerProduct.multiply(BigDecimal.valueOf(this.quantity));
     }
 }

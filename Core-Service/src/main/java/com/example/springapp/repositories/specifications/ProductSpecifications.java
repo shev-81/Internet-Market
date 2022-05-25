@@ -3,6 +3,8 @@ package com.example.springapp.repositories.specifications;
 import com.example.springapp.entities.Product;
 import org.springframework.data.jpa.domain.Specification;
 
+import java.math.BigDecimal;
+
 public class ProductSpecifications {
     public static Specification<Product> scoreGreaterOrEqualsThan(Integer price) {
         return (root, criteriaQuery, criteriaBuilder) -> criteriaBuilder.greaterThanOrEqualTo(root.get("price"), price);

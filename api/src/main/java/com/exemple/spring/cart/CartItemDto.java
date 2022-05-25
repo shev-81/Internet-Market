@@ -1,11 +1,26 @@
 package com.exemple.spring.cart;
 
+import io.swagger.v3.oas.annotations.media.Schema;
+
+import java.math.BigDecimal;
+
+@Schema(description = "Модель позиции ( DTO ) в корзине")
 public class CartItemDto {
+
+    @Schema(description = "ID продукта", required = true, example = "3")
     private Long productId;
+
+    @Schema(description = "Наименование продукта", required = true, example = "Яблоко")
     private String productTitle;
+
+    @Schema(description = "Колличество продуктов в позиции", required = true, example = "6")
     private int quantity;
-    private int pricePerProduct;
-    private int price;
+
+    @Schema(description = "Цена за единицу продукта", required = true, example = "123.12")
+    private BigDecimal pricePerProduct;
+
+    @Schema(description = "Цена позиции с расчетом (колличества помноженного на цену за единицу)", required = true, example = "738.72")
+    private BigDecimal price;
 
     public Long getProductId() {
         return productId;
@@ -31,26 +46,26 @@ public class CartItemDto {
         this.quantity = quantity;
     }
 
-    public int getPricePerProduct() {
+    public BigDecimal getPricePerProduct() {
         return pricePerProduct;
     }
 
-    public void setPricePerProduct(int pricePerProduct) {
+    public void setPricePerProduct(BigDecimal pricePerProduct) {
         this.pricePerProduct = pricePerProduct;
     }
 
-    public int getPrice() {
+    public BigDecimal getPrice() {
         return price;
     }
 
-    public void setPrice(int price) {
+    public void setPrice(BigDecimal price) {
         this.price = price;
     }
 
     public CartItemDto() {
     }
 
-    public CartItemDto(Long productId, String productTitle, int quantity, int pricePerProduct, int price) {
+    public CartItemDto(Long productId, String productTitle, int quantity, BigDecimal pricePerProduct, BigDecimal price) {
         this.productId = productId;
         this.productTitle = productTitle;
         this.quantity = quantity;

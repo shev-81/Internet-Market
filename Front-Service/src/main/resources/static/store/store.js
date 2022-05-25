@@ -57,8 +57,8 @@ angular.module('market-front').controller('storeController', function ($scope, $
                 console.log("Добавили товар в корзину");
             }, function errorCallback(response) {
                 console.log("Сервис лежит");
-                let ExceptionObj = response.data;
-                alert("Ошибка " + ExceptionObj.str);
+                let exceptionObj = response.data;
+                alert("Ошибка " + exceptionObj.message);
             });
     }
 

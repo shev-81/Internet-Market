@@ -4,6 +4,7 @@ import com.example.springapp.exceptions.ValidationException;
 import com.exemple.spring.core.ProductDto;
 import org.springframework.stereotype.Component;
 
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -11,7 +12,7 @@ import java.util.List;
 public class ProductValidator {
     public void validate(ProductDto productDto) {
         List<String> errors = new ArrayList<>();
-        if (productDto.getPrice() < 1) {
+        if (productDto.getPrice().compareTo(BigDecimal.ONE) < 0) {
             errors.add("Цена продукта не может быть меньше 1");
         }
         if (productDto.getName().isBlank()) {

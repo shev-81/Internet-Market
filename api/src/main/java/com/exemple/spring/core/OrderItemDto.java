@@ -1,13 +1,28 @@
 package com.exemple.spring.core;
 
-public class OrderItemDto {
-    private Long productId;
-    private String productName;
-    private int quantity;
-    private int pricePerProduct;
-    private int price;
+import io.swagger.v3.oas.annotations.media.Schema;
 
-    public OrderItemDto(Long productId, String productName, int quantity, int pricePerProduct, int price) {
+import java.math.BigDecimal;
+
+@Schema(description = "Модель позиции в заказе")
+public class OrderItemDto {
+
+    @Schema(description = "ID продукта", required = true, example = "1")
+    private Long productId;
+
+    @Schema(description = "Наименование продукта", required = true, example = "Яблоко")
+    private String productName;
+
+    @Schema(description = "Колличество", required = true, example = "7")
+    private int quantity;
+
+    @Schema(description = "Цена за единицу", required = true, example = "122.21")
+    private BigDecimal pricePerProduct;
+
+    @Schema(description = "Цена за единицу помноженная на колличество", required = true, example = "855,47")
+    private BigDecimal price;
+
+    public OrderItemDto(Long productId, String productName, int quantity, BigDecimal pricePerProduct, BigDecimal price) {
         this.productId = productId;
         this.productName = productName;
         this.quantity = quantity;
@@ -17,7 +32,7 @@ public class OrderItemDto {
 
     public void changeQuantity(int delta) {
         this.quantity += delta;
-        this.price = this.quantity * this.pricePerProduct;
+        this.price = this.pricePerProduct.multiply(BigDecimal.valueOf(this.quantity));
     }
 
     public OrderItemDto() {
@@ -47,19 +62,19 @@ public class OrderItemDto {
         this.quantity = quantity;
     }
 
-    public int getPricePerProduct() {
+    public BigDecimal getPricePerProduct() {
         return pricePerProduct;
     }
 
-    public void setPricePerProduct(int pricePerProduct) {
+    public void setPricePerProduct(BigDecimal pricePerProduct) {
         this.pricePerProduct = pricePerProduct;
     }
 
-    public int getPrice() {
+    public BigDecimal getPrice() {
         return price;
     }
 
-    public void setPrice(int price) {
+    public void setPrice(BigDecimal price) {
         this.price = price;
     }
 }

@@ -1,16 +1,23 @@
 package com.exemple.spring.models;
 
 import com.exemple.spring.core.ProductDto;
+import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.Data;
 
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
 @Data
+@Schema(description = "Корзина продуктов")
 public class Cart {
+
+    @Schema(description = "Список продуктов", required = true)
     private List<CartItem> items;
-    private int totalPrice;
+
+    @Schema(description = "Цена корзины", required = true, example = "122.21")
+    private BigDecimal totalPrice;
 
     public Cart() {
         this.items = new ArrayList<>();
@@ -57,13 +64,13 @@ public class Cart {
 
     public void clear() {
         items.clear();
-        totalPrice = 0;
+        totalPrice = BigDecimal.ZERO;
     }
 
     private void recalculate() {
-        totalPrice = 0;
+        totalPrice = BigDecimal.ZERO;
         for (CartItem o : items) {
-            totalPrice += o.getPrice();
+            totalPrice = totalPrice.add(o.getPrice());
         }
     }
 

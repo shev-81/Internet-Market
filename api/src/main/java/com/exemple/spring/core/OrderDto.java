@@ -1,19 +1,35 @@
 package com.exemple.spring.core;
 
+import io.swagger.v3.oas.annotations.media.Schema;
+
+import java.math.BigDecimal;
 import java.util.List;
 
+@Schema(description = "Модель заказа")
 public class OrderDto {
+
+    @Schema(description = "ID заказа", required = true, example = "1")
     private Long id;
+
+    @Schema(description = "Имя пользователя", required = true, example = "Иван Сергеевич")
     private String username;
+
+    @Schema(description = "Список позиций в заказе", required = true)
     private List<OrderItemDto> items;
-    private Integer totalPrice;
+
+    @Schema(description = "Итоговая цена заказа", required = true, example = "122.21")
+    private BigDecimal totalPrice;
+
+    @Schema(description = "Адресс в заказе", required = true, example = "г. Москва")
     private String address;
+
+    @Schema(description = "Телефон в заказе", required = true, example = "8(903)495-12-23")
     private String phone;
 
     public OrderDto() {
     }
 
-    public OrderDto(Long id, String username, List<OrderItemDto> items, Integer totalPrice, String address, String phone) {
+    public OrderDto(Long id, String username, List<OrderItemDto> items, BigDecimal totalPrice, String address, String phone) {
         this.id = id;
         this.username = username;
         this.items = items;
@@ -46,11 +62,11 @@ public class OrderDto {
         this.items = items;
     }
 
-    public Integer getTotalPrice() {
+    public BigDecimal getTotalPrice() {
         return totalPrice;
     }
 
-    public void setTotalPrice(Integer totalPrice) {
+    public void setTotalPrice(BigDecimal totalPrice) {
         this.totalPrice = totalPrice;
     }
 

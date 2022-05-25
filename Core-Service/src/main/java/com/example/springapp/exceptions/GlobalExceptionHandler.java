@@ -7,6 +7,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
+import org.springframework.web.client.HttpServerErrorException;
 
 @ControllerAdvice
 @Slf4j
@@ -22,4 +23,17 @@ public class GlobalExceptionHandler {
         log.error(e.getMessage(), e);
         return new ResponseEntity<>(new FieldsValidationError(e.getErrorFieldsMessages()), HttpStatus.BAD_REQUEST);
     }
+
+    @ExceptionHandler
+    public ResponseEntity<AppError> catchCartServiceIntegrationException(CartServiceIntegrationException e) {
+        //log.error(e.getMessage(), e);
+        System.out.println("ОШИБКА "+e.getMessage());
+        return new ResponseEntity<>(new AppError(503, e.getMessage()), HttpStatus.SERVICE_UNAVAILABLE);
+    }
+
+//    @ExceptionHandler
+//    public ResponseEntity<CartServiceIntegrationException> catchInternalServerError(HttpServerErrorException.InternalServerError e) {
+//        log.error(e.getMessage(), e);
+//        return new ResponseEntity<>(new CartServiceIntegrationException("Сервис не работает"), HttpStatus.SERVICE_UNAVAILABLE);
+//    }
 }
