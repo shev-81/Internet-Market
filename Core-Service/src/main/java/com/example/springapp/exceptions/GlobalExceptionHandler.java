@@ -25,15 +25,8 @@ public class GlobalExceptionHandler {
     }
 
     @ExceptionHandler
-    public ResponseEntity<AppError> catchCartServiceIntegrationException(CartServiceIntegrationException e) {
-        //log.error(e.getMessage(), e);
-        System.out.println("ОШИБКА "+e.getMessage());
-        return new ResponseEntity<>(new AppError(503, e.getMessage()), HttpStatus.SERVICE_UNAVAILABLE);
+    public ResponseEntity<CartServiceIntegrationException> catchInternalServerError(CartServiceIntegrationException e) {
+        log.error(e.getMessage(), e);
+        return new ResponseEntity<>(new CartServiceIntegrationException("Сервис не работает"), HttpStatus.SERVICE_UNAVAILABLE);
     }
-
-//    @ExceptionHandler
-//    public ResponseEntity<CartServiceIntegrationException> catchInternalServerError(HttpServerErrorException.InternalServerError e) {
-//        log.error(e.getMessage(), e);
-//        return new ResponseEntity<>(new CartServiceIntegrationException("Сервис не работает"), HttpStatus.SERVICE_UNAVAILABLE);
-//    }
 }

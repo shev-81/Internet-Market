@@ -1,6 +1,6 @@
 package com.exemple.spring.exceptions;
 
-public class BadConnectionServiceException extends AppError{
+public class BadConnectionServiceException extends RuntimeException{
 
     public enum CartServiceErrors {
         SERVICE_SHUTDOWN, CART_NOT_FOUND
@@ -12,13 +12,13 @@ public class BadConnectionServiceException extends AppError{
         super();
     }
 
-    public BadConnectionServiceException(Integer statusCode, String message) {
-        super(statusCode, message);
+    public BadConnectionServiceException(String message) {
+        super(message);
     }
 
 
-    public BadConnectionServiceException(Integer statusCode, String message, CartServiceErrors code) {
-        super(statusCode, message);
+    public BadConnectionServiceException(String message, CartServiceErrors code) {
+        super(message);
         this.code = code;
     }
 

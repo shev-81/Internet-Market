@@ -27,9 +27,13 @@ angular.module('market-front').controller('cartController', function ($scope, $h
             url: 'http://localhost:5555/core/api/v1/orders',
             method: 'POST',
             data: $scope.orderDetails
-        }).then(function (response) {
+        }).then(function successCallback(response) {
             $scope.loadCart();
             $scope.orderDetails = null
+        }, function errorCallback(response) {
+            console.log("Сервис лежит");
+            let exceptionObj = response.data.message;
+            alert("Ошибка " + exceptionObj);
         });
     };
 

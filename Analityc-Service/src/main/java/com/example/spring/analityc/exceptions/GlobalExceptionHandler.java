@@ -1,7 +1,10 @@
 package com.example.spring.analityc.exceptions;
 
 
+import com.exemple.spring.exceptions.BadConnectionServiceException;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.client.HttpServerErrorException;
@@ -13,16 +16,14 @@ import java.net.ConnectException;
 public class GlobalExceptionHandler {
 
     @ExceptionHandler
-    public void catchInternalServerError(HttpServerErrorException.InternalServerError e) {
+    public ResponseEntity<BadConnectionServiceException> catchInternalServerError(HttpServerErrorException.InternalServerError e) {
         log.error(e.getMessage(), e);
-        System.out.println("Сервис Аналитики недоступен");
-//        return new ResponseEntity<>(new CartServiceIntegrationException("Сервис не работает"), HttpStatus.SERVICE_UNAVAILABLE);
+        return new ResponseEntity<>(new BadConnectionServiceException("Сервис не работает"), HttpStatus.SERVICE_UNAVAILABLE);
     }
 
     @ExceptionHandler
-    public void catchConnectException(ConnectException e) {
+    public ResponseEntity<BadConnectionServiceException> catchConnectException(ConnectException e) {
         log.error(e.getMessage(), e);
-        System.out.println("БД Сервиса Аналитики недоступна");
-//        return new ResponseEntity<>(new CartServiceIntegrationException("Сервис не работает"), HttpStatus.SERVICE_UNAVAILABLE);
+        return new ResponseEntity<>(new BadConnectionServiceException("Сервис не работает"), HttpStatus.SERVICE_UNAVAILABLE);
     }
 }

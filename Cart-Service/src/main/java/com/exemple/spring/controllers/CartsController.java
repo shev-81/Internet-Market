@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.*;
 import javax.annotation.PostConstruct;
 import java.util.ArrayList;
 
+
 @RestController
 @Data
 @RequestMapping("/api/v1/cart")
@@ -154,6 +155,22 @@ public class CartsController {
         cartService.clearListProductsForAnalit();
         return buferAnalitListProductDto;
     }
+
+  // Тестовая цепочка проброса исключений по цепочке МС CartService -> CoreService -> Front
+//    @GetMapping("/one")
+//
+//    public ArrayList<ProductDto> getOne(){
+//        if(true){
+//            throw new BadConnectionServiceException("Ошибка в сервисе корзины", CART_NOT_FOUND);
+//        }
+//
+//        buferAnalitListProductDto.clear();
+//        buferAnalitListProductDto.addAll(cartService.getListProductsForAnalit());
+//        cartService.getAnalitService().registration(buferAnalitListProductDto);
+//        cartService.clearListProductsForAnalit();
+//        return buferAnalitListProductDto;
+//    }
+
 
     private String getCurrentCartUuid(String username, String uuid) {
         if (username != null) {
