@@ -24,3 +24,5 @@ integrations:
     connect-timeout: 2000
     read-timeout: 10000
     write-timeout: 2000
+  auth-service:
+    url: http://localhost:5555/auth

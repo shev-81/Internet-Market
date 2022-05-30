@@ -2,10 +2,10 @@ package com.example.springapp.controllers;
 
 
 import com.example.springapp.converters.OrderConverter;
-import com.exemple.spring.core.CategoryDto;
 import com.exemple.spring.core.OrderDetailsDto;
 import com.example.springapp.services.OrderService;
 import com.exemple.spring.core.OrderDto;
+import com.exemple.spring.exceptions.ResourceNotFoundException;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.media.ArraySchema;
@@ -60,6 +60,20 @@ public class OrdersController {
     )
     public List<OrderDto> getCurrentUserOrders(@RequestHeader @Parameter(description = "Заголовок с именем пользователя", required = true) String username) {
         return orderService.findOrdersByUsername(username).stream().map(o -> orderConverter.entityToDto(o)).collect(Collectors.toList());
+    }
+
+    @GetMapping("/{id}")
+    @Operation(
+            summary = "Запрос на получение заказа по ID",
+            responses = {
+                    @ApiResponse(
+                            description = "Успешный ответ", responseCode = "200",
+                            content = @Content(schema = @Schema(implementation = OrderDto.class))
+                    )
+            }
+    )
+    public OrderDto getOrderById(@PathVariable Long id) {
+        return orderConverter.entityToDto(orderService.findById(id).orElseThrow(() -> new ResourceNotFoundException("ORDER 404")));
     }
 }
 

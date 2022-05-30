@@ -5,12 +5,24 @@
             <td>ID</td>
             <td>Адрес доставки</td>
             <td>Стоимость</td>
+            <td></td>
         </tr>
         <tbody>
         <tr ng-repeat="order in MyOrders">
-            <td>{{order.id}}</td>
-            <td>{{order.address}}</td>
+            <td><h3>{{order.id}}</h3></td>
+            <td> Кому: <b>{{order.fio}}</b>,<p></p>
+                Город: <b>{{order.adminAreaTwoTown}}</b>,<p></p>
+                Улица: <b>{{order.addressLineOneStreet}}</b>,<p></p>
+                Номер апартаментов: <b>{{order.addressLineTwoApartmentNumber}}</b>,<p></p>
+                Телефон: <b>{{order.adminAreaTwoTown}}</b>,<p></p>
+                E-mail: <b>{{order.email}}</b>,<p></p>
+                Статус заказа: <b>{{order.status}}</b>
+            </td>
             <td>{{order.totalPrice}}</td>
+            <td>
+                <button class="btn btn-primary" ng-click="goToPay(order.id)" ng-show="!isUserPay(order.status)">Оплатить</button>
+                <button class="btn btn-secondary" ng-click="disabledCheckOut()" ng-show="isUserPay(order.status)">Оплатить</button>
+            </td>
         </tr>
         </tbody>
     </table>

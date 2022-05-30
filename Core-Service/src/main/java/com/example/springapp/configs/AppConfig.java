@@ -9,6 +9,7 @@ import org.springframework.boot.context.properties.EnableConfigurationProperties
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.client.reactive.ReactorClientHttpConnector;
+import org.springframework.web.client.RestTemplate;
 import org.springframework.web.reactive.function.client.WebClient;
 import reactor.netty.http.client.HttpClient;
 import reactor.netty.tcp.TcpClient;
@@ -24,6 +25,11 @@ public class AppConfig {
     private final CartServiceIntegrationProperties cartServiceIntegrationProperties;
     //    @Value("${integrations.cart-service.url}")
     //    private String cartServiceUrl;
+
+    @Bean
+    public RestTemplate userServiceClient(){
+        return new RestTemplate();
+    }
 
     @Bean
     public WebClient cartServiceWebClient() {

@@ -1,6 +1,7 @@
 package com.exemple.spring.auth.services;
 
 
+import com.exemple.spring.auth.UserDto;
 import com.exemple.spring.auth.entities.Role;
 import com.exemple.spring.auth.entities.User;
 import com.exemple.spring.auth.repositories.RoleRepository;
