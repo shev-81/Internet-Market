@@ -36,7 +36,7 @@
         <xs:sequence>
             <xs:element name="id" type="xs:long"/>
             <xs:element name="name" type="xs:string"/>
-            <xs:element name="price" type="xs:int"/>
+            <xs:element name="price" type="xs:decimal"/>
         </xs:sequence>
     </xs:complexType>
 </xs:schema>

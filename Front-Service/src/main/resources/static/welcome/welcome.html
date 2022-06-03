@@ -7,18 +7,13 @@
             <tr>
                 <td>Название</td>
                 <td>Колличество запросов</td>
-                <td></td>
             </tr>
             <tbody>
             <tr ng-repeat="p in ProductList">
                 <td>{{p.nameProduct}}</td>
                 <td>{{p.count}}</td>
-                <td>
-                    <button class="btn btn-primary" ng-click="addToCart(p.id)">В корзину</button>
-                </td>
             </tr>
             </tbody>
         </table>
     </div>
-
 </div>

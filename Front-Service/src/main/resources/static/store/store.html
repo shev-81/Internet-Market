@@ -49,8 +49,8 @@
                 <tbody>
                 <tr ng-repeat="p in ProductList">
                     <td>{{p.id}}</td>
-                    <td>{{p.name}}</td>
-                    <td>{{p.price}}</td>
+                    <td><b>{{p.name}}</b></td>
+                    <td>{{p.price}}  руб.</td>
                     <td>
                         <button class="btn btn-primary" ng-click="addToCart(p.id)">В корзину</button>
                     </td>

@@ -1,22 +1,22 @@
-<div>
+<div ng-show="isCartHaveItems(cart.totalPrice)">
     <p></p>
     <h3>Корзина</h3>
     <table class="table table-hover">
         <tr>
             <td>Название товара</td>
             <td>Количество</td>
-            <td>Цена</td>
+            <td>Цена за шт.</td>
         </tr>
         <tbody>
         <tr ng-repeat="item in cart.items">
-            <td>{{item.productName}}</td>
-            <td>{{item.quantity}}</td>
-            <td>{{item.pricePerProduct + ' x ' + item.quantity + ' = ' + item.price}}</td>
+            <td><b>{{item.productName}}</b></td>
+            <td>{{item.quantity}} шт.</td>
+            <td>{{item.price}} руб.</td>
         </tr>
         <tr>
             <td></td>
             <td>Итого</td>
-            <td>{{cart.totalPrice}}</td>
+            <td><h4>{{cart.totalPrice}} руб.</h4></td>
         </tr>
         </tbody>
     </table>
@@ -43,4 +43,8 @@
 
     <button class="btn btn-primary" ng-click="checkOut()" ng-show="isUserLoggedIn() && cart.items.length > 0">Оформить заказ</button>
     <button class="btn btn-secondary" ng-click="disabledCheckOut()" ng-show="!isUserLoggedIn() && cart.items.length > 0">Оформить заказ</button>
+</div>
+<div ng-show="!isCartHaveItems(cart.totalPrice)">
+    <p></p>
+    <h3>Ваша корзина пуста.</h3>
 </div>

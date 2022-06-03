@@ -8,6 +8,5 @@ angular.module('market-front').controller('welcomeController', function ($scope,
                 $scope.ProductList = response.data;
             });
     }
-
     $scope.loadProductsAnalytic();
 });

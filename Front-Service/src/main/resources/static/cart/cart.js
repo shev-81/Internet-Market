@@ -11,6 +11,14 @@ angular.module('market-front').controller('cartController', function ($scope, $h
         });
     };
 
+    $scope.isCartHaveItems = function(x){
+        if(x > 0){
+            return true;
+        }else{
+            return false;
+        }
+    };
+
     $scope.disabledCheckOut = function () {
         alert("Для оформления заказа необходимо войти в учетную запись");
     }
