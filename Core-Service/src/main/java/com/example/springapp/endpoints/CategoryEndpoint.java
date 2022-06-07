@@ -19,7 +19,7 @@ public class CategoryEndpoint {
     private final CategoryService categoryService;
 
     /*
-        Пример запроса: POST http://localhost:8189/ws
+        Пример запроса: POST http://localhost:5555/core/ws
 
         <soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/"
           xmlns:f="http://www.shev.com/spring/ws/categories">

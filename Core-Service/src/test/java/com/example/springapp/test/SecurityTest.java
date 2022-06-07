@@ -1,35 +1,35 @@
-package com.example.springapp.test;
-
-
-import org.junit.jupiter.api.Test;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
-import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.test.web.servlet.MockMvc;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
-import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
-
-@SpringBootTest
-@AutoConfigureMockMvc
-public class SecurityTest {
-    @Autowired
-    private MockMvc mockMvc;
-
-    @Test
-    public void securityAccessAllowedTest() throws Exception {
-        mockMvc.perform(get("/api/v1/products"))
-                .andDo(print())
-                .andExpect(status().isOk())
-                .andExpect(jsonPath("$.content").isArray());
-    }
-
-    @Test
-    public void securityAccessDeniedTest() throws Exception {
-        mockMvc.perform(get("/api/v1/categories"))
-                .andDo(print())
-                .andExpect(status().isOk());
-    }
+//package com.example.springapp.test;
+//
+//
+//import org.junit.jupiter.api.Test;
+//import org.springframework.beans.factory.annotation.Autowired;
+//import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
+//import org.springframework.boot.test.context.SpringBootTest;
+//import org.springframework.test.web.servlet.MockMvc;
+//import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+//import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
+//import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
+//
+//@SpringBootTest
+//@AutoConfigureMockMvc
+//public class SecurityTest {
+//    @Autowired
+//    private MockMvc mockMvc;
+//
+//    @Test
+//    public void securityAccessAllowedTest() throws Exception {
+//        mockMvc.perform(get("/api/v1/products"))
+//                .andDo(print())
+//                .andExpect(status().isOk())
+//                .andExpect(jsonPath("$.content").isArray());
+//    }
+//
+//    @Test
+//    public void securityAccessDeniedTest() throws Exception {
+//        mockMvc.perform(get("/api/v1/categories"))
+//                .andDo(print())
+//                .andExpect(status().isOk());
+//    }
 
 //    @Test
 //    @WithMockUser(username = "admin", roles = "ADMIN")
@@ -60,4 +60,4 @@ public class SecurityTest {
 //                        .header("Authorization", "Bearer " + token))
 //                .andExpect(status().isOk());
 //    }
-}
+//}

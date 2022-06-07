@@ -23,7 +23,7 @@ public class WebServiceConfig extends WsConfigurerAdapter {
         return new ServletRegistrationBean(servlet, "/ws/*");
     }
 
-    // http://localhost:8189/ws/groups.wsdl
+    // http://localhost:8189/ws/categories.wsdl
     @Bean(name = "categories")
     public DefaultWsdl11Definition categoriesWsdl11Definition(XsdSchema categorySchema) {
         DefaultWsdl11Definition wsdl11Definition = new DefaultWsdl11Definition();
@@ -34,7 +34,7 @@ public class WebServiceConfig extends WsConfigurerAdapter {
         return wsdl11Definition;
     }
 
-    // http://localhost:8080/ws/students.wsdl
+    // http://localhost:8080/ws/products.wsdl
     @Bean(name = "products")
     public DefaultWsdl11Definition productsWsdl11Definition(XsdSchema productsSchema) {
         DefaultWsdl11Definition wsdl11Definition = new DefaultWsdl11Definition();

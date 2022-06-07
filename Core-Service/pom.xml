@@ -113,9 +113,6 @@
                         <source>${project.basedir}/src/main/resources/category.xsd</source>
                         <source>${project.basedir}/src/main/resources/products.xsd</source>
                     </sources>
-                    <!--					<packageName>soap</packageName>-->
-                    <!--					<outputDirectory>${project.basedir}/src/main/java/com/flamexander/spring/ws/soap</outputDirectory>-->
-                    <!--					<clearOutputDir>false</clearOutputDir>-->
                 </configuration>
             </plugin>
         </plugins>

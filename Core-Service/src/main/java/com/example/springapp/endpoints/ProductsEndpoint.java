@@ -31,7 +31,8 @@ public class ProductsEndpoint {
     }
 
     /*
-        Пример запроса: POST http://localhost:8189/app/ws
+        Пример запроса: POST http://localhost:5555/core/ws
+
         Header -> Content-Type: text/xml
 
         <soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:f="http://www.shev.com/spring/ws/products">
