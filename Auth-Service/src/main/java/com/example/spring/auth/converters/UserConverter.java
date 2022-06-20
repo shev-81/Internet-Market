@@ -1,9 +1,9 @@
-package com.exemple.spring.auth.converters;
+package com.example.spring.auth.converters;
 
-import com.exemple.spring.auth.UserDto;
-import com.exemple.spring.auth.entities.Role;
-import com.exemple.spring.auth.entities.User;
-import com.exemple.spring.auth.services.UserService;
+import com.example.spring.auth.UserDto;
+import com.example.spring.auth.entities.Role;
+import com.example.spring.auth.entities.User;
+import com.example.spring.auth.services.UserService;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import org.springframework.security.crypto.password.PasswordEncoder;

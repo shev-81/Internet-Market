@@ -5,7 +5,7 @@ import com.example.springapp.entities.Order;
 import com.example.springapp.entities.OrderItem;
 import com.example.springapp.integrations.CartServiceIntegration;
 import com.example.springapp.repositories.OrdersRepository;
-import com.exemple.spring.auth.UserDto;
+import com.example.spring.auth.UserDto;
 import com.exemple.spring.cart.CartDto;
 import com.exemple.spring.core.OrderDetailsDto;
 import com.exemple.spring.exceptions.ResourceNotFoundException;

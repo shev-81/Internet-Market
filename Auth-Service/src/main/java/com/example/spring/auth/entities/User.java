@@ -1,4 +1,4 @@
-package com.exemple.spring.auth.entities;
+package com.example.spring.auth.entities;
 
 import lombok.Data;
 import org.hibernate.annotations.CreationTimestamp;
@@ -7,7 +7,6 @@ import org.hibernate.annotations.UpdateTimestamp;
 import javax.persistence.*;
 import java.time.LocalDateTime;
 import java.util.Collection;
-import java.util.List;
 
 @Entity
 @Data

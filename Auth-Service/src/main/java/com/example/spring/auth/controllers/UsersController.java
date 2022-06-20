@@ -1,14 +1,13 @@
-package com.exemple.spring.auth.controllers;
+package com.example.spring.auth.controllers;
 
-import com.exemple.spring.auth.UserDto;
-import com.exemple.spring.auth.converters.UserConverter;
-import com.exemple.spring.auth.entities.User;
-import com.exemple.spring.auth.services.UserService;
+import com.example.spring.auth.UserDto;
+import com.example.spring.auth.converters.UserConverter;
+import com.example.spring.auth.services.UserService;
+import com.example.spring.auth.entities.User;
 import com.exemple.spring.exceptions.ResourceNotFoundException;
 import lombok.AllArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
-import java.security.Principal;
 import java.util.List;
 import java.util.stream.Collectors;
 

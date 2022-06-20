@@ -1,11 +1,10 @@
-package com.exemple.spring.auth.services;
+package com.example.spring.auth.services;
 
 
-import com.exemple.spring.auth.UserDto;
-import com.exemple.spring.auth.entities.Role;
-import com.exemple.spring.auth.entities.User;
-import com.exemple.spring.auth.repositories.RoleRepository;
-import com.exemple.spring.auth.repositories.UserRepository;
+import com.example.spring.auth.repositories.RoleRepository;
+import com.example.spring.auth.repositories.UserRepository;
+import com.example.spring.auth.entities.Role;
+import com.example.spring.auth.entities.User;
 import lombok.Data;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.GrantedAuthority;

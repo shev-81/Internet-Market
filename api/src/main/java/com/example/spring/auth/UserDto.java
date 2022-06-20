@@ -1,4 +1,4 @@
-package com.exemple.spring.auth;
+package com.example.spring.auth;
 
 public class UserDto {
     private Long id;

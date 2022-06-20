@@ -1,10 +1,10 @@
-package com.exemple.spring.auth.controllers;
+package com.example.spring.auth.controllers;
 
-import com.exemple.spring.auth.dto.JwtRequest;
-import com.exemple.spring.auth.dto.JwtResponse;
+import com.example.spring.auth.services.UserService;
+import com.example.spring.auth.dto.JwtRequest;
+import com.example.spring.auth.dto.JwtResponse;
 import com.exemple.spring.exceptions.AppError;
-import com.exemple.spring.auth.services.UserService;
-import com.exemple.spring.auth.utils.JwtTokenUtil;
+import com.example.spring.auth.utils.JwtTokenUtil;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

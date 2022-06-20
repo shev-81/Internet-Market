@@ -1,6 +1,6 @@
-package com.exemple.spring.auth.repositories;
+package com.example.spring.auth.repositories;
 
-import com.exemple.spring.auth.entities.Role;
+import com.example.spring.auth.entities.Role;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;

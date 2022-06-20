@@ -1,11 +1,11 @@
 package com.example.springapp.test;
 
 
-import com.exemple.spring.auth.entities.Role;
-import com.exemple.spring.auth.entities.User;
-import com.exemple.spring.auth.repositories.RoleRepository;
-import com.exemple.spring.auth.repositories.UserRepository;
-import com.exemple.spring.auth.services.UserService;
+import com.example.spring.auth.entities.Role;
+import com.example.spring.auth.entities.User;
+import com.example.spring.auth.repositories.RoleRepository;
+import com.example.spring.auth.repositories.UserRepository;
+import com.example.spring.auth.services.UserService;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.mockito.ArgumentMatchers;

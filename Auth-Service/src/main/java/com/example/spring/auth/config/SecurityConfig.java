@@ -1,4 +1,4 @@
-package com.exemple.spring.auth.config;
+package com.example.spring.auth.config;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;

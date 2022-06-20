@@ -1,4 +1,4 @@
-package com.exemple.spring.auth.utils;
+package com.example.spring.auth.utils;
 
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
